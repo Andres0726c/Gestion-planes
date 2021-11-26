@@ -1,0 +1,68 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #0a4275;">
+        <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link active text-white" aria-current="page" routerLink='/dispositivored'>Dispositivo de Red</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link text-white" routerLink='/dispositivosimcard'>Asociar Simcard a Dispositivo</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <form class="row gy-2 gx-3 align-items-center formulario espacio">
+        <div class="col-sm-3">
+        <label for="autoSizingSelect">Tipo de Dispositivo</label>
+        <select class="form-select" id="autoSizingSelect"  name="tipo" >
+        <option [ngValue]="undefined" selected>Selecciona un Tipo</option>
+        <option value="Router">Router</option>
+        <option value="Repetidor">Repetidor</option>
+        <option value="Access Point">Access Point</option>
+        </select>
+    </div>  
+        <div class="col-sm-3">
+            <label >Referencia</label>
+            <input type="text" class="form-control" name="referencia" id="autoSizingInput">
+        </div>
+        <div class="col-sm-3">
+            <label >Modelo</label>
+            <input type="text" class="form-control"  name="modelo" id="autoSizingInput">
+        </div>
+        <div>
+            <!-- <button type="submit" (click)="create()" class="btn btn-primary boton" *ngIf="!dispositivo.id_dispositivo else elseBlock">Registrar</button>
+            <ng-template #elseBlock>
+                <button type="submit" (click)="update()" class="btn btn-primary boton">Actualizar</button>
+            </ng-template> -->
+        </div> 
+    </form>
+</div>
+
+    <!-- <form class="row gy-2 gx-3 align-items-center formulario espacio">
+        <div class="col-sm-3">
+        <label for="autoSizingSelect">Tipo de Dispositivo</label>
+        <select class="form-select" id="autoSizingSelect" [(ngModel)]="dispositivo.tipo_dispositivo" name="tipo" >
+        <option [ngValue]="undefined" selected>Selecciona un Tipo</option>
+        <option value="Router">Router</option>
+        <option value="Repetidor">Repetidor</option>
+        <option value="Access Point">Access Point</option>
+        </select>
+    </div>  
+        <div class="col-sm-3">
+            <label >Referencia</label>
+            <input type="text" class="form-control" [(ngModel)]="dispositivo.referencia" name="referencia" id="autoSizingInput">
+        </div>
+        <div class="col-sm-3">
+            <label >Modelo</label>
+            <input type="text" class="form-control" [(ngModel)]="dispositivo.modelo" name="modelo" id="autoSizingInput">
+        </div>
+        <div>
+            <button type="submit" (click)="create()" class="btn btn-primary boton" *ngIf="!dispositivo.id_dispositivo else elseBlock">Registrar</button>
+            <ng-template #elseBlock>
+                <button type="submit" (click)="update()" class="btn btn-primary boton">Actualizar</button>
+            </ng-template>
+        </div> 
+    </form> -->

@@ -1,0 +1,42 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="detalleService.modal">
+<div class="modal" tabindex="-1" style="display:block">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Actualizar Simcard</h5>
+          <button (click)="cerrarModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row gy-2 gx-3 align-items-center formulario espacio" #simcardForm="ngForm">
+                <div class="col-sm-4">
+                    <label >Número de Simcard</label>
+                    <input type="text" class="form-control" id="autoSizingInput" placeholder="Número de Simcard">
+                </div>
+                <div class="col-sm-5" >
+                    <label for="autoSizingSelect">Operador Telefónico</label>
+                    <select class="form-select" id="autoSizingSelect" >
+                    <option selected>Selecciona un Operador</option>
+                    <option value="operadores" *ngFor="let operador of operadores">{{operador.operador}} - {{operador.banda}}</option>
+                    </select>
+                </div>     
+                <div class="col-sm-5" >
+                    <label for="autoSizingSelect">Estado Simcard</label>
+                    <select class="form-select" id="autoSizingSelect" >
+                    <option selected>Estado de la Simcard</option>
+                    <option value="ac">Activo</option>
+                    <option value="in">Inactivo</option>
+                    <option value="bl">Bloqueada</option>
+                    </select>
+                </div> 
+                <div>
+                        <button type="submit" (click)="update()" class="btn btn-primary boton">Actualizar</button>
+                </div>      
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

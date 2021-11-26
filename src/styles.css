@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Catamaran', sans-serif;
+    margin-bottom: 50px;
+}
+
+p {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.formulario {
+    padding-top: 2rem;
+}
+.boton {
+    margin: 1.5rem 0 0 0 ;
+}
+.espacio {
+    justify-content: space-between;
+}
+
+a:hover{
+    background-color: rgba(118, 147, 242, 0.7);
+}

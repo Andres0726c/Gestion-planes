@@ -1,0 +1,73 @@
+<ul class="alert alert-danger" *ngIf="errores.length > 0">
+    <li *ngFor="let err of errores">
+        {{ err }}
+    </li>
+</ul>
+<div class="container">
+  <form class="row gy-2 gx-3 align-items-center formulario espacio">
+    <div class="col-sm-3">
+      <label for="autoSizingSelect">Tipo de Dispositivo</label>
+      <select class="form-select" id="autoSizingSelect" [(ngModel)]="dispositivo.tipo_dispositivo" name="tipo" >
+      <option [ngValue]="undefined" selected>Selecciona un Tipo</option>
+      <option value="Router">Router</option>
+      <option value="Repetidor">Repetidor</option>
+      <option value="Access Point">Access Point</option>
+      </select>
+  </div>  
+      <div class="col-sm-3">
+          <label >Referencia</label>
+          <input type="text" class="form-control" [(ngModel)]="dispositivo.referencia" name="referencia" id="autoSizingInput">
+      </div>
+      <div class="col-sm-3">
+          <label >Modelo</label>
+          <input type="text" class="form-control" [(ngModel)]="dispositivo.modelo" name="modelo" id="autoSizingInput">
+      </div>
+      <div>
+          <button type="submit" (click)="create()" class="btn btn-primary boton" *ngIf="!dispositivo.id_dispositivo else elseBlock">Registrar</button>
+          <ng-template #elseBlock>
+              <button type="submit" (click)="update()" class="btn btn-primary boton">Actualizar</button>
+          </ng-template>
+      </div> 
+  </form>
+
+  <p class="mt-4">Gestión de consumo de planes de datos en Simcard</p>
+
+<div class="card border-primary mb-3">
+  <!-- <div class="card-header">Operadores</div> -->
+  <div class="card-body text-primary">
+    
+      <div *ngIf="dispositivos.length == 0" class="alert alert-info">
+          No hay registros en la base de datos!
+      </div>
+
+      <app-disposimcard></app-disposimcard>
+
+      <form class="d-flex mb-3">
+        <input class="form-control me-2 mt-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-primary mt-2" type="submit">Buscar</button>
+      </form>
+
+      <table class="table table-primary table-striped" *ngIf="dispositivos.length > 0">
+          <thead>
+              <tr>
+                  <th>Tipo de Dispositivo</th>
+                  <th>Referencia</th>
+                  <th>Modelo</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let dispositivo of dispositivos">
+                  <td>{{ dispositivo.tipo_dispositivo }}</td>
+                  <td>{{ dispositivo.referencia }}</td>
+                  <td>{{ dispositivo.modelo }}</td>
+                  <td>
+                      <button type="button" name="button" class="btn btn-primary" [routerLink] = "['/dispositivos', dispositivo.id_dispositivo]"><i class="bi bi-pencil-square"></i></button>
+                      <button type="button" name="button" class="btn btn-danger ms-4" (click)="delete(dispositivo)"><i class="bi bi-trash"></i></button>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+  </div>
+</div>
+</div>

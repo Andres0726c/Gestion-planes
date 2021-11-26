@@ -1,0 +1,84 @@
+<!-- <ul class="alert alert-danger" *ngIf="errores.length > 0">
+    <li *ngFor="let err of errores">
+        {{ err }}
+    </li>
+</ul> -->
+<div class="container">
+    <form class="row gy-2 gx-3 align-items-center formulario espacio" #operadorForm="ngForm">
+        <div class="col-sm-4">
+            <label >Operador Telefónico</label>
+            <input type="text" class="form-control" id="autoSizingInput" [(ngModel)]="operador.operador" name="operador" placeholder="Nombre del Operador" #nombre="ngModel">
+            <!-- required minlength="4" -->
+            <!-- Manejo de errores solo desde el front -->
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors?.required">
+                    El Nombre es requerido
+                </div>
+                <div *ngIf="nombre.errors?.minlength">
+                    El Nombre debe tener al menos 4 caracteres
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <label for="autoSizingSelect">Banda en Ghz</label>
+            <select class="form-select" id="autoSizingSelect" [(ngModel)]="operador.banda" name="banda" #banda="ngModel"> <!-- required -->
+            <option [ngValue]="undefined" selected>Selecciona una banda de Operación</option>
+            <option value="2.4">2.4</option>
+            <option value="5.0">5.0</option>
+            </select>
+            <!-- Manejo de errores solo desde el front -->
+            <div class="alert alert-danger" *ngIf="banda.invalid && (banda.dirty || banda.touched)">
+                <div *ngIf="banda.errors?.required">
+                    La Banda es requerida
+                </div>
+
+            </div>
+        </div>  
+        <div>
+            <button type="submit" (click)="create()" class="btn btn-primary boton" *ngIf="!operador.id_operador else elseBlock" >Registrar</button>
+            <!--[disabled] = "!operadorForm.form.valid" -->
+            <ng-template #elseBlock>
+                <button type="submit" (click)="update()" class="btn btn-primary boton" [disabled] = "!operadorForm.form.valid">Actualizar</button>
+            </ng-template>
+        </div>      
+    </form>
+
+
+    <p class="mt-4">Gestión de consumo de planes de datos en Simcard</p>
+    
+    <form class="d-flex mb-3">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+      </form>
+<div class="card border-primary mb-3">
+    <!-- <div class="card-header">Operadores</div> -->
+    <div class="card-body text-primary">
+      
+        <div *ngIf="operadores.length == 0" class="alert alert-info">
+            No hay registros en la base de datos!
+        </div>
+
+        <table class="table table-primary table-striped" *ngIf="operadores.length > 0">
+            <thead>
+                <tr>
+                    <th>Id_operador</th>
+                    <th>Operador</th>
+                    <th>Banda en Ghz</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let operador of operadores">
+                    <td>{{ operador.id_operador }}</td>
+                    <td>{{ operador.operador }}</td>
+                    <td>{{ operador.banda }}</td>
+                    <td>
+                        <button type="button" name="button" class="btn btn-primary" [routerLink] = "['/operadores', operador.id_operador]"><i class="bi bi-pencil-square"></i></button>
+                        <button type="button" name="button" class="btn btn-danger ms-4" (click)="delete(operador)"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>    
+    </div>
+  </div>
+</div>

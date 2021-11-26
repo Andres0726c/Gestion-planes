@@ -1,0 +1,64 @@
+<app-detalle *ngIf="simcardSeleccionada" [simcardDetalle] = "simcardSeleccionada"></app-detalle>
+<!-- <ul class="alert alert-danger" *ngIf="errores.length > 0">
+    <li *ngFor="let err of errores">
+        {{ err }}
+    </li>
+</ul> -->
+<div class="container">
+    <form class="row gy-2 gx-3 align-items-center formulario espacio" #simcardForm="ngForm">
+        <div class="col-sm-4">
+            <label >Número de Simcard</label>
+            <input type="text" class="form-control" id="autoSizingInput" [(ngModel)]="simcard.numero" name="numero" placeholder="Número de Simcard" #nombre="ngModel">
+        </div>
+        <div class="col-sm-5" >
+            <label for="autoSizingSelect">Operador Telefónico</label>
+            <select class="form-select" id="autoSizingSelect" >
+            <option selected>Selecciona un Operador</option>
+            <option value="operadores" *ngFor="let operador of operadores">{{operador.operador}} - {{operador.banda}}</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" (click)="create()" class="btn btn-primary boton">Registrar</button>
+        </div>
+    </form>
+
+    <p class="mt-4">Gestión de consumo de planes de datos en Simcard</p>
+    <form class="d-flex mb-3">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+      </form>
+<div class="card border-primary mb-3">
+    <div class="card-body text-primary">
+
+        <div *ngIf="simcards.length == 0" class="alert alert-info">
+            No hay registros en la base de datos!
+        </div>
+
+        <table class="table table-primary table-striped" *ngIf="simcards.length > 0">
+            <thead>
+                <tr>
+                    <th>Id_simcard</th>
+                    <th>Número de Simcard</th>
+                    <th>Operador</th>
+                    <th>Banda en Ghz</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let simcard of simcards" >
+                    <td>{{ simcard.id_simcard }}</td>
+                    <td>{{ simcard.numero }}</td>                    
+                    <td>{{ simcard.operador.operador }}</td>
+                    <td>{{ simcard.operador.banda }}</td>
+                    <td>{{ simcard.estado }}</td>
+                    <td>
+                        <button type="button" name="button" class="btn btn-primary" (click)="abrirModal(simcard)" [routerLink] = "['/simcards', simcard.id_simcard]"><i class="bi bi-pencil-square"></i></button>
+                        <button type="button" name="button" class="btn btn-danger ms-4" (click)="delete(simcard)"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
